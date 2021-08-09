@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+	int t,n,i,j;
+	cin>>t;
+	while(t--){
+		cin>>n;
+		for(i=0;i<n;i++)
+			for(j=0;j<n;j++)
+				cin>>a[i][j];
+
+		unordered_set<int>s;
+		for(i=0;i<n;i++)
+			s.insert(a[0][i]);
+
+		unordered_set<int>temp;
+		for(i=1;i<n;i++){
+			for(j=0;j<n;j++){
+
+				//unordered_set<int>temp2;
+				temp.insert(a[i][j]);
+				
+				for(auto p:s){
+					if(temp.find(*p)==temp.end())
+						s.erase();
+				}
+
+				if(s.size()==0)
+					return 0;
+
+			}
+
+		}
+		for(auto i:s)
+			cout<<i<<" ";
+		cout<<endl;
+	}
+	return 0;
+}

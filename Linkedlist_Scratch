@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node *next;
+    
+    Node(int x){
+        data=x;
+        next=NULL;
+    }
+};
+
+
+struct Node *newnode(int data){
+    struct Node* newnode=new Node(data);
+    newnode->data=data;
+    newnode->next=NULL;
+    return newnode;
+}
+
+struct Node *segregate(Node *head){
+    struct Node *even,*odd,*estart,*ostart,*cur;
+    cur=head;
+    
+    while(cur){
+       if(cur->data%2==0){
+           if(estart==NULL)
+                estart=even=cur;
+            else
+                even->next=cur;
+       }
+       else{
+           if(ostart==NULL)
+                ostart=odd=cur;
+            else
+                odd->next=cur;
+       }
+    }
+    even->next=ostart;
+    return estart;
+    
+}
+
+
+int main(){
+    int t,n,x,i;
+    cin>>t;
+    while(t--){
+        cin>>n;
+        cin>>x;
+        struct Node *head,*temp,*prev;
+        head=new Node(x);
+        temp=head;
+        prev=head;
+        for(i=0;i<n-1;i++){
+            cin>>x;
+            temp->next=new Node(x);
+            temp=temp->next;
+        }
+        temp=segregate(head);
+        while(temp->next){
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+        cout<<temp->data<<endl;
+    }
+    return 0;
+}
+
+
+        
+            
+            
+            
+    
